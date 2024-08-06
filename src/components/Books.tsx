@@ -10,7 +10,7 @@ interface CardProps {
   bookData: Book[];
 }
 
-const Card: React.FC<CardProps> = ({ bookData }) => {
+const Books: React.FC<CardProps> = ({ bookData }) => {
   return (
     <div className="w-5/6 m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-4 ">
       {bookData ? (
@@ -59,7 +59,7 @@ const Title: React.FC<{ title: string }> = ({ title }) => {
     e.preventDefault(); //because all card is inside link, and we don't want a redirect
     setIsExpanded(!isExpanded);
   };
-  let titleBlock =
+  let titleBlock = title ? (
     title.length > 50 ? (
       <p
         className="text-lg font-semibold line-clamp-2 overflow-hidden"
@@ -72,7 +72,10 @@ const Title: React.FC<{ title: string }> = ({ title }) => {
       <p className="text-lg font-semibold line-clamp-2 overflow-hidden">
         {title}
       </p>
-    );
+    )
+  ) : (
+    <p className="text-lg font-semibold">No title</p>
+  );
 
   return (
     <div>
@@ -87,4 +90,4 @@ const Title: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-export default Card;
+export default Books;

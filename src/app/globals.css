@@ -21,3 +21,17 @@
     text-wrap: balance;
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border-width: 4px;
+  border-color: transparent;
+  border-top-color: #3490dc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

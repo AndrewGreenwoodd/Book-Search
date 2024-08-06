@@ -1,16 +1,30 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import useBookSearch from "@/hooks/useBookSearch";
 import Books from "@/components/Books";
+import { Book } from "@/app/types/Book.types";
 
-const SearchResults: React.FC = () => {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
-  const { bookData, fetchBooks, loading, hasMore } = useBookSearch(query);
+interface ClientSearchResultsProps {
+  initialBookData: Book[];
+  query: string;
+}
+
+const ClientSearchResults: React.FC<ClientSearchResultsProps> = ({
+  initialBookData,
+  query,
+}) => {
+  const [bookData, setBookData] = useState<Book[]>(initialBookData);
+  const [page, setPage] = useState(1); // start from page 1 since initial data is considered page 0
+  const { fetchBooks, loading, hasMore } = useBookSearch(
+    query,
+    page,
+    setPage,
+    setBookData
+  );
+
   const { ref: loadMoreRef, inView } = useInView({
     threshold: 1,
     triggerOnce: false,
@@ -45,4 +59,4 @@ const SearchResults: React.FC = () => {
   );
 };
 
-export default SearchResults;
+export default ClientSearchResults;
