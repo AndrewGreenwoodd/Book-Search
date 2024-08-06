@@ -29,7 +29,6 @@ const BookDetails: React.FC = () => {
     return <div className="text-center mt-28">Loading...</div>;
   }
 
-  console.log(book);
   const sanitizedDescription = book.volumeInfo.description
     ? DOMPurify.sanitize(book.volumeInfo.description)
     : "No description"; //to secure html code we get from backend

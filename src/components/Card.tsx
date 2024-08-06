@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ bookData }) => {
           return (
             <div
               className="card group relative p-4 bg-gray-100 shadow rounded cursor-pointer h-13 flex flex-col align-middle justify-center"
-              key={item.id}
+              key={item.id + item.accessInfo.country}
             >
               <Link href={`/book/${item.id}`}>
                 <div className="relative">
