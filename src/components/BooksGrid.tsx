@@ -10,7 +10,7 @@ interface CardProps {
   bookData: Book[];
 }
 
-const Books: React.FC<CardProps> = ({ bookData }) => {
+const BooksGrid: React.FC<CardProps> = ({ bookData }) => {
   return (
     <div className="w-5/6 m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-4 ">
       {bookData ? (
@@ -33,7 +33,7 @@ const Books: React.FC<CardProps> = ({ bookData }) => {
                     className="rounded h-80 w-full object-cover transition-transform duration-300 transform group-hover:scale-110"
                   />
                   <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded">
-                    <span className="text-white text-lg mb-4 bg-black bg-opacity-80 p-1">
+                    <span className="text-white text-lg mb-4 bg-slate-600 bg-opacity-80 p-1">
                       Show more
                     </span>
                   </div>
@@ -90,4 +90,4 @@ const Title: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-export default Books;
+export default BooksGrid;

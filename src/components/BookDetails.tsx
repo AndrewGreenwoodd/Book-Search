@@ -36,10 +36,10 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
   return (
     <>
       <button
-        className="p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 mb-4"
+        className="bg-slate-400 p-3 hover:bg-slate-500 rounded shadow  mb-4"
         onClick={handleBack}
       >
-        Back to selection
+        &larr; Back To Selection
       </button>
       {isLoading ? (
         <div className="flex justify-center items-center h-[50vh]">
@@ -61,18 +61,39 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
             <h1 className="text-4xl text-center font-bold mb-2">
               {book.volumeInfo.title}
             </h1>
-            <h2 className="text-2xl text-gray-700 mb-4 text-center">
+            <h2 className="text-2xl text-gray-700 text-center">
               {book.volumeInfo.authors
-                ? book.volumeInfo.authors.join(", ")
+                ? book.volumeInfo.authors.length === 1
+                  ? "Author: " + book.volumeInfo.authors.join(", ")
+                  : "Authors: " + book.volumeInfo.authors.join(", ")
                 : ""}
             </h2>
             <p
               className="text-gray-800 text-center"
               dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
             ></p>
-            <Link href={book.volumeInfo.previewLink} target="_blank">
-              <p className="text-center text-blue-500"> Preview of this book</p>
-            </Link>
+            <div className="actions flex self-center gap-5">
+              <Link
+                href={book.volumeInfo.previewLink}
+                target="_blank"
+                className="bg-slate-400 p-3 hover:bg-slate-500 "
+              >
+                <p className="text-center text-black hover:text-white">
+                  {" "}
+                  Preview of this book
+                </p>
+              </Link>
+              <Link
+                href={book.volumeInfo.infoLink}
+                target="_blank"
+                className="bg-slate-400 p-3 hover:bg-slate-500 "
+              >
+                <p className="text-center text-black hover:text-white">
+                  {" "}
+                  This book in store
+                </p>
+              </Link>
+            </div>
           </div>
         </div>
       )}

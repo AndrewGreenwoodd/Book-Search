@@ -37,7 +37,7 @@ const Main: React.FC = () => {
           />
           <button
             onClick={handleSearch}
-            className="p-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600"
+            className="bg-slate-400 p-2 hover:bg-slate-500 text-black hover:text-white rounded shadow "
           >
             Search
           </button>

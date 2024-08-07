@@ -9,7 +9,6 @@ export async function generateMetadata({ params }: any) {
 
   try {
     const book = await fetchBookById(id);
-    console.log(book);
     if (!book) {
       notFound();
     }
