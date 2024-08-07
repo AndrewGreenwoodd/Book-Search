@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Book } from "@/app/types/Book.types";
 
-const useBookSearch = (query: string) => {
+const useBookSearch = (query: string, language: string) => {
   const [bookData, setBookData] = useState<Book[]>([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const useBookSearch = (query: string) => {
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${apiKey}&startIndex=${
           page * 20
-        }&maxResults=20`
+        }&maxResults=20&langRestrict=${language}`
       );
       const newBooks = response.data.items || [];
       if (newBooks.length < 20) {
@@ -41,7 +41,7 @@ const useBookSearch = (query: string) => {
     } finally {
       setLoading(false);
     }
-  }, [query, apiKey, page, bookData]);
+  }, [query, apiKey, page, bookData, language]);
 
   return { bookData, fetchBooks, loading, hasMore, setPage };
 };

@@ -1,9 +1,9 @@
 import React from "react";
-import { Metadata } from "next";
 import BookSearch from "@/components/BookSearch";
 
 export const generateMetadata = ({ searchParams }: any) => {
   const query = searchParams.query || "";
+
   return {
     title: `Search Results for "${query}"`,
     description: `Search for your favourite books, like ${query}`,

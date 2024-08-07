@@ -10,7 +10,11 @@ import BooksGrid from "@/components/BooksGrid";
 const BookSearch: React.FC = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  const { bookData, fetchBooks, loading, hasMore } = useBookSearch(query);
+  const language = searchParams.get("lang") || "";
+  const { bookData, fetchBooks, loading, hasMore } = useBookSearch(
+    query,
+    language
+  );
   const { ref: loadMoreRef, inView } = useInView({
     threshold: 1,
     triggerOnce: false,
@@ -23,7 +27,7 @@ const BookSearch: React.FC = () => {
   }, [inView, loading, hasMore, fetchBooks]);
 
   return (
-    <main className="bg-gray-300">
+    <main className="bg-gray-300 min-h-[100vh]">
       <Link href="/" className="mx-auto">
         <button className="p-2 bg-slate-400  hover:bg-slate-500 text-black hover:text-white rounded shadow  m-6">
           &larr; Back to Search

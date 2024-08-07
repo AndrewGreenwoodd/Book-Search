@@ -6,6 +6,7 @@ import backgroundImage from "@/assets/book.jpg";
 
 const Main: React.FC = () => {
   const [search, setSearch] = useState("");
+  const [language, setLanguage] = useState("en");
   const [displayError, setDisplayError] = useState(false);
 
   const handleSearch = () => {
@@ -13,11 +14,15 @@ const Main: React.FC = () => {
       setDisplayError(true);
       return;
     }
-    document.location.href = `/search?query=${search}`;
+    document.location.href = `/search?query=${search}&lang=${language}`;
   };
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setDisplayError(false);
+  };
+
+  const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(e.target.value);
   };
 
   return (
@@ -31,10 +36,19 @@ const Main: React.FC = () => {
             type="text"
             placeholder="Enter Your Book Name"
             value={search}
-            onChange={handleChange}
+            onChange={handleSearchChange}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="p-2 border border-gray-300 rounded shadow"
           />
+          <label>Book language: </label>
+          <select
+            value={language}
+            onChange={handleLanguageChange}
+            className="p-2 border border-gray-300  shadow"
+          >
+            <option value="en">English</option>
+            <option value="uk">Ukrainian</option>
+          </select>
           <button
             onClick={handleSearch}
             className="bg-slate-400 p-2 hover:bg-slate-500 text-black hover:text-white rounded shadow "
