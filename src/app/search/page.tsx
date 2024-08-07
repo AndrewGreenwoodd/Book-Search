@@ -1,5 +1,5 @@
 import React from "react";
-import BookSearch from "@/components/BookSearch";
+import BookSearchWrapper from "@/components/BookSearch";
 import { Suspense } from "react";
 
 export const generateMetadata = ({ searchParams }: any) => {
@@ -14,7 +14,7 @@ export const generateMetadata = ({ searchParams }: any) => {
 const SearchResultsPage: React.FC = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <BookSearch />;
+      <BookSearchWrapper />;
     </Suspense>
   );
 };

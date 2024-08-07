@@ -7,10 +7,20 @@ import { useInView } from "react-intersection-observer";
 import useBookSearch from "@/hooks/useBookSearch";
 import BooksGrid from "@/components/BooksGrid";
 
-const BookSearch: React.FC = () => {
+interface BookSearchProps {
+  query: string;
+  language: string;
+}
+
+const BookSearchWrapper: React.FC = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   const language = searchParams.get("lang") || "";
+
+  return <BookSearch query={query} language={language}></BookSearch>;
+};
+
+const BookSearch: React.FC<BookSearchProps> = ({ query, language }) => {
   const { bookData, fetchBooks, loading, hasMore } = useBookSearch(
     query,
     language
@@ -49,4 +59,4 @@ const BookSearch: React.FC = () => {
   );
 };
 
-export default BookSearch;
+export default BookSearchWrapper;
