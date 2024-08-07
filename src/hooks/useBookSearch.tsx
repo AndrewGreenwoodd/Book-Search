@@ -7,7 +7,7 @@ const useBookSearch = (query: string, language: string) => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API;
+  // const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API;
 
   const filterDuplicates = (books: Book[], newBooks: Book[]): Book[] => {
     //sometimes Books API sends duplicate books
@@ -19,7 +19,7 @@ const useBookSearch = (query: string, language: string) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${apiKey}&startIndex=${
+        `https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=${
           page * 20
         }&maxResults=20&langRestrict=${language}`
       );
@@ -41,7 +41,7 @@ const useBookSearch = (query: string, language: string) => {
     } finally {
       setLoading(false);
     }
-  }, [query, apiKey, page, bookData, language]);
+  }, [query, page, bookData, language]);
 
   return { bookData, fetchBooks, loading, hasMore, setPage };
 };
