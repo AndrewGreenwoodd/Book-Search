@@ -31,7 +31,7 @@ const Main: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Find Your Book
         </h2>
-        <div className="search flex items-center justify-center space-x-4">
+        <div className="search flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-center md:space-x-4 ">
           <input
             type="text"
             placeholder="Enter Your Book Name"
@@ -44,7 +44,7 @@ const Main: React.FC = () => {
           <select
             value={language}
             onChange={handleLanguageChange}
-            className="p-2 border border-gray-300  shadow"
+            className="p-2 border border-gray-300  shadow w-full md:w-auto"
           >
             <option value="en">English</option>
             <option value="uk">Ukrainian</option>
