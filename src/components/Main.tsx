@@ -64,7 +64,7 @@ const Main: React.FC = () => {
         <Image
           src={backgroundImage}
           alt="book"
-          className="mt-4 h-2/4 w-auto"
+          className="mt-4 h-[25vh] md:h-2/4 w-auto"
           priority
           width={500}
         />
